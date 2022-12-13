@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../.."
+		},
+		{
+			"path": "../../../../../UCSD-VIRT-FSF-PT-09-2022-U-LOLC/11-Express/01-Activities"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Note-Taker"
+	}
+}
