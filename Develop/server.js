@@ -2,7 +2,10 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 
-const PORT = 3004;
+
+const uuid = require("./helpers/uuid");
+
+const PORT = process.env.PORT || 3004;
 
 const app = express();
 
@@ -42,6 +45,7 @@ app.post('/api/notes', (req, res) => {
       const newNote = {
         title,
         text,
+        review_id: uuid(),
       };
   
       // Obtain existing reviews
