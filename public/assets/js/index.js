@@ -1,6 +1,11 @@
 // 3 API routes
 // one gets one deletes and one posts from json
-// 2 HTMLS
+// // 2 HTMLS
+const express = require('express');
+
+const app = express();
+
+module.exports = app;
 
 let noteTitle;
 let noteText;
