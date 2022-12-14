@@ -8,6 +8,8 @@ notes.get('/', (req, res) => {
   readFromFile('./db/notes.json').then((data) => res.json(JSON.parse(data)));
 });
 
+
+
 // POST Route for a new UX/UI notes
 notes.post('/', (req, res) => {
   console.info(`${req.method} request received to add a note`);
@@ -19,7 +21,7 @@ notes.post('/', (req, res) => {
     const newNote = {
       title,
       text,
-      text_id: uuid(),
+      noteId: uuid(),
     };
 
     readAndAppend(newNote, './db/notes.json');
@@ -27,6 +29,18 @@ notes.post('/', (req, res) => {
   } else {
     res.error('Error in adding Note');
   }
+});
+
+notes.get('/:id', (req, res) => {
+  const noteId = req.params.id;
+  readFromFile('./db/notes.json')
+    .then((data) => JSON.parse(data))
+    .then((json) => {
+      const result = json.filter((note) => note.id === noteId);
+      return result.length > 0
+        ? res.json(result)
+        : res.json('No note with that ID');
+    });
 });
 
 module.exports = notes;
