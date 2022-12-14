@@ -34,16 +34,7 @@ notes.delete('/:id', (req, res) => {
   console.info(`${req.method} request received to delete a note`);
   console.log(req.body);
 
-  const { title, text } = req.body;
-
   if (req.body) {
-    const newNote = {
-      title,
-      text,
-      id: uuid(),
-    };
-
-    readAndAppend(newNote, './db/notes.json');
     res.json(`Note deleted successfully 🚀`);
   } else {
     res.error('Error in deleting Note');
