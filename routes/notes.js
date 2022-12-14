@@ -9,7 +9,6 @@ notes.get('/', (req, res) => {
 });
 
 
-
 // POST Route for a new UX/UI notes
 notes.post('/', (req, res) => {
   console.info(`${req.method} request received to add a note`);
@@ -31,7 +30,7 @@ notes.post('/', (req, res) => {
   }
 });
 
-notes.get('/:id', (req, res) => {
+notes.get('/id', (req, res) => {
   const noteId = req.params.id;
   readFromFile('./db/notes.json')
     .then((data) => JSON.parse(data))
