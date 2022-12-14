@@ -20,7 +20,7 @@ notes.post('/', (req, res) => {
     const newNote = {
       title,
       text,
-      noteId: uuid(),
+      id: uuid(),
     };
 
     readAndAppend(newNote, './db/notes.json');
@@ -28,18 +28,6 @@ notes.post('/', (req, res) => {
   } else {
     res.error('Error in adding Note');
   }
-});
-
-notes.get('/id', (req, res) => {
-  const noteId = req.params.id;
-  readFromFile('./db/notes.json')
-    .then((data) => JSON.parse(data))
-    .then((json) => {
-      const result = json.filter((note) => note.id === noteId);
-      return result.length > 0
-        ? res.json(result)
-        : res.json('No note with that ID');
-    });
 });
 
 module.exports = notes;
