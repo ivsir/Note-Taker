@@ -1,5 +1,5 @@
 const notes = require('express').Router();
-const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
+const { readFromFile, readAndAppend, readAndDelete } = require('../helpers/fsUtils');
 const uuid = require('../helpers/uuid');
 
 // GET Route for retrieving all the notes
@@ -34,7 +34,16 @@ notes.delete('/:id', (req, res) => {
   console.info(`${req.method} request received to delete a note`);
   console.log(req.body);
 
+  const { title, text } = req.body;
+
   if (req.body) {
+    const newNote = {
+      title,
+      text,
+      id: uuid(),
+    };
+
+    readAndDelete(newNote, './db/notes.json');
     res.json(`Note deleted successfully 🚀`);
   } else {
     res.error('Error in deleting Note');
